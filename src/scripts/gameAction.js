@@ -1,34 +1,29 @@
 const units = document.querySelectorAll('.game__unit');
-let fieldUser = []; // array of all User's moves
-let fieldAI = []; // array of all AI's moves
-let fieldCommon = []; // array of all AI's moves
-
+const windowWin = document.querySelector(".game__page_win");
+const windowLose = document.querySelector(".game__page_loose");
+const againBtns = document.querySelectorAll(".game__page_button");
+let fieldCommon = []; // array of all moves
 
 for (let i = 0; i < units.length; i++) {
     let unitUser = units[i];
-    let maxNum = units.length;
     unitUser.addEventListener('click', () => {
-        if (unitUser.classList.contains('game__zero') || unitUser.classList.contains('game__cross')) return;
-        fieldUser[i] = i;
+        // User's move
+        if (fieldCommon[compNum] === 1 || fieldCommon[compNum] === 0) return;
         fieldCommon[i] = 1;
         unitUser.classList.add('game__cross');
-
         calculateWinner(fieldCommon);
 
-        // console.log("User: " + fieldUser);
-
         // random number from 0 to units.length-1
+        let maxNum = units.length;
         let compNum = Math.floor(Math.random() * (maxNum));
 
+        // AI's move
         while (fieldCommon[compNum] === 1 || fieldCommon[compNum] === 0) {
             compNum = Math.floor(Math.random() * (maxNum));
         }
         let unitComp = units[compNum];
-
-        fieldAI[compNum] = compNum;
         fieldCommon[compNum] = 0;
         unitComp.classList.add('game__zero');
-
         calculateWinner(fieldCommon);
 
         // console.log("AI: " + fieldAI);
@@ -36,10 +31,9 @@ for (let i = 0; i < units.length; i++) {
     });
 };
 
-const windowWin = document.querySelector(".game__page_win");
-const windowLose = document.querySelector(".game__page_loose");
-
+// calculating winner
 function calculateWinner(field) {
+    // win combinations
     const winComlinatoins = [
         [0, 1, 2, 3, 4],
         [5, 6, 7, 8, 9],
@@ -73,8 +67,6 @@ function calculateWinner(field) {
     };
 };
 
-const againBtns = document.querySelectorAll(".game__page_button");
-
 // button play again
 for (let i = 0; i < againBtns.length; i++) {
     let againBtn = againBtns[i];
@@ -84,11 +76,8 @@ for (let i = 0; i < againBtns.length; i++) {
             deleteUnit.classList.remove("game__zero");
             deleteUnit.classList.remove("game__cross");
         };
-        fieldUser.length = 0;
-        fieldAI.length = 0;
         fieldCommon.length = 0;
         windowLose.classList.remove("game__page_active");
         windowWin.classList.remove("game__page_active");
     })
-
 };
