@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     width: 100%;
     height: 100vh;
     background: radial-gradient(#2f73d4, #2b62af);
@@ -24,6 +25,7 @@
     border: 1px solid #fff;
     cursor: pointer;
     transition: .3s;
+
     &:hover {
         background-color: #155abc;
     }
@@ -39,6 +41,7 @@
         background-color: #fffca8;
         position: relative;
     }
+
     &:after {
         content: "";
         display: block;
@@ -47,13 +50,15 @@
         border-radius: 50%;
         background-color: #2f73d4;
         position: absolute;
-        top:31px;
+        top: 31px;
         left: 31px;
     }
 }
 
 .game__cross {
-    &:before, &:after {
+
+    &:before,
+    &:after {
         position: absolute;
         left: 39px;
         content: "";
@@ -63,10 +68,49 @@
         border-radius: 5px;
         background-color: #fff;
     }
+
     &:before {
         transform: rotate(-45deg);
     }
+
     &:after {
         transform: rotate(45deg);
+    }
+}
+
+.game__page {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: inherit;
+}
+
+.game__page_active {
+    display: flex; //activate window
+}
+
+.game__page_subtitle {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.game__page_button {
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 18px;
+    background-color: orange;
+    border-radius: 5px;
+    transition: .3s;
+
+    &:hover {
+        background-color: red;
     }
 }
