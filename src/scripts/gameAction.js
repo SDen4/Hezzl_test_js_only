@@ -2,32 +2,38 @@ const units = document.querySelectorAll('.game__unit');
 const windowWin = document.querySelector(".game__page_win");
 const windowLose = document.querySelector(".game__page_loose");
 const againBtns = document.querySelectorAll(".game__page_button");
-let fieldCommon = []; // array of all moves
+let field = []; // array of all moves
+let counter = 0; // conter of moves
 
 for (let i = 0; i < units.length; i++) {
     let unitUser = units[i];
     unitUser.addEventListener('click', () => {
         // User's move
-        if (fieldCommon[compNum] === 1 || fieldCommon[compNum] === 0) return;
-        fieldCommon[i] = 1;
+        if (field[i] === 1 || field[i] === 0) return;
+        field[i] = 1;
         unitUser.classList.add('game__cross');
-        calculateWinner(fieldCommon);
+        calculateWinner(field);
 
         // random number from 0 to units.length-1
         let maxNum = units.length;
         let compNum = Math.floor(Math.random() * (maxNum));
 
         // AI's move
-        while (fieldCommon[compNum] === 1 || fieldCommon[compNum] === 0) {
+        while (field[compNum] === 1 || field[compNum] === 0) {
             compNum = Math.floor(Math.random() * (maxNum));
         }
         let unitComp = units[compNum];
-        fieldCommon[compNum] = 0;
+        field[compNum] = 0;
         unitComp.classList.add('game__zero');
-        calculateWinner(fieldCommon);
+        calculateWinner(field);
+
+        counter += 2;
+
+        // console.log(counter);
+
 
         // console.log("AI: " + fieldAI);
-        // console.log("Common: " + fieldCommon);
+        // console.log("Common: " + field);
     });
 };
 
@@ -76,8 +82,11 @@ for (let i = 0; i < againBtns.length; i++) {
             deleteUnit.classList.remove("game__zero");
             deleteUnit.classList.remove("game__cross");
         };
-        fieldCommon.length = 0;
+        field.length = 0;
+        counter = 0;
         windowLose.classList.remove("game__page_active");
         windowWin.classList.remove("game__page_active");
     })
 };
+
+export {counter};
