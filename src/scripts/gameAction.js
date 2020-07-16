@@ -1,4 +1,5 @@
 import createAddElements from './gameCreateAddElem';
+import createConfetti from './gameConfetti';
 import {arrWin8x8, arrWin5x5} from './gameWinComb';
 
 let units = document.querySelectorAll('.game__unit');
@@ -92,6 +93,7 @@ function calculateWinner(field, arrWin) {
             // User win matching
             if (field[a] === 1) {
                 windowWin.classList.add("game__page_active");
+                createConfetti();
             };
 
             // AI win matching
@@ -105,22 +107,29 @@ function calculateWinner(field, arrWin) {
 // button Play again
 for (let i = 0; i < againBtns.length; i++) {
     let againBtn = againBtns[i];
-    againBtn.addEventListener('click', () => {
-        units = document.querySelectorAll('.game__unit');
-        for (let j = 0; j < units.length; j++) {
-            let deleteUnit = units[j];
-            deleteUnit.classList.remove("game__zero");
-            deleteUnit.classList.remove("game__cross");
-        };
-        let addUnits = document.querySelectorAll('.game__unit_add');
-        for (let i = 0; i < addUnits.length; i++) {
-            let addUnit = addUnits[i];
-            addUnit.remove();
-            gameField.classList.remove('game__field_large');
-        };
-        field.length = 0;
-        counter = 0;
-        windowLose.classList.remove("game__page_active");
-        windowWin.classList.remove("game__page_active");
-    })
+    againBtn.addEventListener('click', playAgain);
+};
+
+function playAgain() {
+    units = document.querySelectorAll('.game__unit');
+    for (let j = 0; j < units.length; j++) {
+        let deleteUnit = units[j];
+        deleteUnit.classList.remove("game__zero");
+        deleteUnit.classList.remove("game__cross");
+    };
+    let addUnits = document.querySelectorAll('.game__unit_add');
+    for (let i = 0; i < addUnits.length; i++) {
+        let addUnit = addUnits[i];
+        addUnit.remove();
+        gameField.classList.remove('game__field_large');
+    };
+    let confetti = document.querySelectorAll('.game__confetti');
+    for (let i = 0; i < confetti.length; i++) {
+        let candy = confetti[i];
+        candy.remove();
+    };
+    field.length = 0;
+    counter = 0;
+    windowLose.classList.remove("game__page_active");
+    windowWin.classList.remove("game__page_active");
 };

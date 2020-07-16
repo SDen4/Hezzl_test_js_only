@@ -11,6 +11,10 @@
     background: inherit;
 }
 
+.game__page_win {
+    overflow: hidden;
+}
+
 .game__page_active {
     display: flex; //activate window
 }
@@ -31,7 +35,8 @@
     background-color: $buttonAgainMain;
     border-radius: 20px;
     transition: .3s;
-    
+    outline: none;
+
     &:hover {
         background-color: $buttonAgainHover;
     }
