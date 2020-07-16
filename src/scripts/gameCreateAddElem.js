@@ -1,7 +1,6 @@
-let newRows = 8;
-let addUnits = 3;
-let currRows = 5;
-let newUnits = 24;
+let addUnits = 3; // quantity of additional units
+let currRows = 5; // current rows
+let newUnits = 24; // quantity of units for new rows
 const gameField = document.querySelector('.game__field');
 
 
@@ -19,8 +18,6 @@ function createAddElements() {
         gameField.append(addDiv);
     }
 };
-
-
 
 
 export default createAddElements;
