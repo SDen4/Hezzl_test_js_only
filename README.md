@@ -1,6 +1,5 @@
-# Denis Skryabin
+##  Hezzl test work (using only js, without phaser3)
+### by Denis Skryabin
 
-##  Hezzl test work using only js, without phaser3
-```sh
 
-```
+### Open in [github-pages](https://sden4.github.io/Hezzl_test_js_only/)
