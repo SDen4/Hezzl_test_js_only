@@ -1,4 +1,6 @@
 import createAddElements from './gameCreateAddElem';
+import {arrWin8x8, arrWin5x5} from './gameWinComb';
+
 
 const gameField = document.querySelector('.game__field');
 
@@ -20,7 +22,7 @@ console.log("1 fild = " + i);
 
 
         unitUser.classList.add('game__cross');
-        calculateWinner(field);
+        calculateWinner5x5(field);
 
         // random number from 0 to units.length-1
         let maxNum = units.length;
@@ -33,7 +35,7 @@ console.log("1 fild = " + i);
         let unitComp = units[compNum];
         field[compNum] = 0;
         unitComp.classList.add('game__zero');
-        calculateWinner(field);
+        calculateWinner5x5(field);
 
         counter += 2;
         console.log(counter);
@@ -63,7 +65,7 @@ console.log("1 fild = " + i);
     console.log("2 fild = " + j);
     console.log("field[j] = " + field[j] + "; " + "j = " + j);
                 newUnitUser.classList.add('game__cross');
-                // calculateWinner(field);
+                calculateWinner8x8(field);
 
                 // random number from 0 to units.length-1
                 let newMaxNum = units.length;
@@ -76,7 +78,7 @@ console.log("1 fild = " + i);
                 let newUnitComp = units[newCompNum];
                 field[newCompNum] = 0;
                 newUnitComp.classList.add('game__zero');
-                // calculateWinner(field);
+                calculateWinner8x8(field);
                 console.log(field);
             });
 
@@ -85,23 +87,34 @@ console.log("1 fild = " + i);
     });
 };
 
-// calculating winner
-function calculateWinner(field) {
+// calculating winner 5x5
+function calculateWinner5x5(field) {
     // win combinations
-    const winComlinatoins = [
-        [0, 1, 2, 3, 4],
-        [5, 6, 7, 8, 9],
-        [10, 11, 12, 13, 14],
-        [15, 16, 17, 18, 19],
-        [20, 21, 22, 23, 24],
-        [0, 5, 10, 15, 20],
-        [1, 6, 11, 16, 21],
-        [2, 7, 12, 17, 22],
-        [3, 8, 13, 18, 23],
-        [4, 9, 14, 19, 24],
-        [0, 6, 12, 18, 24],
-        [4, 8, 12, 16, 20]
-    ];
+    const winComlinatoins = arrWin5x5;
+
+    for (let j = 0; j < winComlinatoins.length; j++) {
+        let [a, b, c, d, e] = winComlinatoins[j];
+        if (field[a] != undefined && field[a] === field[b] && field[b] === field[c] && field[c] === field[d] && field[d] === field[e]) {
+            // console.log('win!');
+            // console.log(field[a]); // выводит победителя 0 или 1
+            // User win matching 
+            if (field[a] === 1) {
+                windowWin.classList.add("game__page_active");
+            };
+            // AI win matching
+            if (field[a] === 0) {
+                windowLose.classList.add("game__page_active");
+            };
+
+        };
+    };
+};
+
+
+// calculating winner 8x8
+function calculateWinner8x8(field) {
+    // win combinations
+    const winComlinatoins = arrWin8x8;
 
     for (let j = 0; j < winComlinatoins.length; j++) {
         let [a, b, c, d, e] = winComlinatoins[j];
