@@ -36,6 +36,22 @@
     }
 }
 
+// lighting the winner units of User
+.game__unit_win_User {
+    &:hover {
+        background-color: green;
+    }
+    background-color: green;
+  }
+  
+  // lighting the winner units of AI
+  .game__unit_win_AI {
+    &:hover {
+        background-color: red;
+    }
+    background-color: red;
+  }
+
 .game__zero {
     &:before {
         content: "";

@@ -1,6 +1,6 @@
 import createAddElements from './gameCreateAddElem';
 import createConfetti from './gameConfetti';
-import {arrWin8x8, arrWin5x5} from './gameWinComb';
+import { arrWin8x8, arrWin5x5 } from './gameWinComb';
 
 let units = document.querySelectorAll('.game__unit');
 const gameField = document.querySelector('.game__field');
@@ -55,7 +55,7 @@ for (let i = 0; i < units.length; i++) {
         units = document.querySelectorAll('.game__unit');
         for (let j = 0; j < units.length; j++) {
             let newUnitUser = units[j];
-            if(counter < 16) return;
+            if (counter < 16) return;
             newUnitUser.addEventListener('click', () => {
                 // User's move
                 if (field[j] === 1 || field[j] === 0 || counter < 16) return;
@@ -83,22 +83,41 @@ for (let i = 0; i < units.length; i++) {
 };
 
 // calculating win combinations
-function calculateWinner(field, arrWin) {
-    const winComlinatoins = arrWin;
+function calculateWinner(field, winCombinatoins) {
 
-    for (let j = 0; j < winComlinatoins.length; j++) {
-        let [a, b, c, d, e] = winComlinatoins[j];
+    for (let j = 0; j < winCombinatoins.length; j++) {
+        let [a, b, c, d, e] = winCombinatoins[j];
+        let winVars = [a, b, c, d, e];
+        let winDuration = 1000; // duration of showing the win result in ms
+
         if (field[a] != undefined && field[a] === field[b] && field[b] === field[c] && field[c] === field[d] && field[d] === field[e]) {
 
             // User win matching
             if (field[a] === 1) {
-                windowWin.classList.add("game__page_active");
-                createConfetti();
+                // lighting win units of User
+                for (let i = 0; i < winVars.length; i++) {
+                    let winVar = winVars[i];
+                    units[winVar].classList.add('game__unit_win_User');
+                }
+                // timeout to see User's win combination
+                setTimeout(() => {
+                    windowWin.classList.add("game__page_active");
+                    createConfetti();
+                }, winDuration);
             };
 
             // AI win matching
             if (field[a] === 0) {
-                windowLose.classList.add("game__page_active");
+                // lighting win units of Ai
+                for (let i = 0; i < winVars.length; i++) {
+                    let winVar = winVars[i];
+                    units[winVar].classList.add('game__unit_win_AI');
+                }
+                // timeout to see AI's win combination
+                setTimeout(() => {
+                    windowLose.classList.add("game__page_active");
+                }, winDuration);
+
             };
         };
     };
@@ -111,25 +130,43 @@ for (let i = 0; i < againBtns.length; i++) {
 };
 
 function playAgain() {
+    // remove all X & 0 
     units = document.querySelectorAll('.game__unit');
     for (let j = 0; j < units.length; j++) {
         let deleteUnit = units[j];
         deleteUnit.classList.remove("game__zero");
         deleteUnit.classList.remove("game__cross");
     };
+    // remove all additional units of 8X8
     let addUnits = document.querySelectorAll('.game__unit_add');
     for (let i = 0; i < addUnits.length; i++) {
         let addUnit = addUnits[i];
         addUnit.remove();
         gameField.classList.remove('game__field_large');
     };
+    // remove confetti of winner
     let confetti = document.querySelectorAll('.game__confetti');
     for (let i = 0; i < confetti.length; i++) {
         let candy = confetti[i];
         candy.remove();
     };
+    // remove units User winner lighting
+    let unitsWinUser = document.querySelectorAll('.game__unit_win_User');
+    for (let i = 0; i < unitsWinUser.length; i++) {
+        let unitWin = unitsWinUser[i];
+        unitWin.classList.remove("game__unit_win_User");
+    };
+    // remove units AI winner lighting
+    let unitsWinAI = document.querySelectorAll('.game__unit_win_AI');
+    for (let i = 0; i < unitsWinAI.length; i++) {
+        let unitWin = unitsWinAI[i];
+        unitWin.classList.remove("game__unit_win_AI");
+    };
+    // clear the field array
     field.length = 0;
+    // clear the counter
     counter = 0;
+    // hide win and loose pages
     windowLose.classList.remove("game__page_active");
     windowWin.classList.remove("game__page_active");
 };
