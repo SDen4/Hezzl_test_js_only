@@ -40,23 +40,12 @@
     &:before {
         content: "";
         display: block;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background-color: $zeroBackground;
-        position: relative;
-    }
-
-    &:after {
-        content: "";
-        display: block;
         width: 36px;
         height: 36px;
         border-radius: 50%;
-        background-color: $zeroHole;
-        position: absolute;
-        top: 31px;
-        left: 31px;
+        border: 17px solid $zeroBackground;
+        background-color: transparent;
+        position: relative;
     }
 }
 
