@@ -77,6 +77,8 @@ for (let i = 0; i < units.length; i++) {
                 newUnitComp.classList.add('game__zero');
 
                 calculateWinner(field, arrWin8x8);
+
+                counter += 2; // counter of moves, 2 moves: User & AI
             });
         };
     });
@@ -88,8 +90,7 @@ function calculateWinner(field, winCombinatoins) {
     for (let j = 0; j < winCombinatoins.length; j++) {
         let [a, b, c, d, e] = winCombinatoins[j];
         let winVars = [a, b, c, d, e];
-        let winDuration = 1000; // duration of showing the win result in ms
-
+        let winDuration = 10000; // duration of showing the win result in ms
         if (field[a] != undefined && field[a] === field[b] && field[b] === field[c] && field[c] === field[d] && field[d] === field[e]) {
 
             // User win matching
@@ -117,7 +118,6 @@ function calculateWinner(field, winCombinatoins) {
                 setTimeout(() => {
                     windowLose.classList.add("game__page_active");
                 }, winDuration);
-
             };
         };
     };
