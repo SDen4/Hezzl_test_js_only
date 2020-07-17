@@ -90,7 +90,7 @@ function calculateWinner(field, winCombinatoins) {
     for (let j = 0; j < winCombinatoins.length; j++) {
         let [a, b, c, d, e] = winCombinatoins[j];
         let winVars = [a, b, c, d, e];
-        let winDuration = 10000; // duration of showing the win result in ms
+        let winDuration = 1000; // duration of showing the win result in ms
         if (field[a] != undefined && field[a] === field[b] && field[b] === field[c] && field[c] === field[d] && field[d] === field[e]) {
 
             // User win matching
