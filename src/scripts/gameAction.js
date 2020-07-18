@@ -9,13 +9,14 @@ const windowLose = document.querySelector(".game__page_loose");
 const againBtns = document.querySelectorAll(".game__page_button");
 let field = []; // array of all moves
 let counter = 0; // counter of moves for calculating 60%
+let flag = true; // flag to enable click if someone win
 
 
 for (let i = 0; i < units.length; i++) {
     let unitUser = units[i];
     unitUser.addEventListener('click', () => {
         // User's move
-        if (field[i] === 1 || field[i] === 0 || counter >= 16) return;
+        if (field[i] === 1 || field[i] === 0 || counter >= 16 || flag === false) return;
         field[i] = 1;
         unitUser.classList.add('game__cross');
 
@@ -34,7 +35,6 @@ for (let i = 0; i < units.length; i++) {
         unitComp.classList.add('game__zero');
 
         calculateWinner(field, arrWin5x5);
-
         counter += 2; // counter of moves, 2 moves: User & AI
 
         if (counter === 16) {
@@ -58,7 +58,7 @@ for (let i = 0; i < units.length; i++) {
             if (counter < 16) return;
             newUnitUser.addEventListener('click', () => {
                 // User's move
-                if (field[j] === 1 || field[j] === 0 || counter < 16) return;
+                if (field[j] === 1 || field[j] === 0 || counter < 16 || flag === false) return;
                 field[j] = 1;
                 newUnitUser.classList.add('game__cross');
 
@@ -77,7 +77,6 @@ for (let i = 0; i < units.length; i++) {
                 newUnitComp.classList.add('game__zero');
 
                 calculateWinner(field, arrWin8x8);
-
                 counter += 2; // counter of moves, 2 moves: User & AI
             });
         };
@@ -90,11 +89,12 @@ function calculateWinner(field, winCombinatoins) {
     for (let j = 0; j < winCombinatoins.length; j++) {
         let [a, b, c, d, e] = winCombinatoins[j];
         let winVars = [a, b, c, d, e];
-        let winDuration = 1000; // duration of showing the win result in ms
+        let winDuration = 2500; // duration of showing the win result in ms
         if (field[a] != undefined && field[a] === field[b] && field[b] === field[c] && field[c] === field[d] && field[d] === field[e]) {
 
             // User win matching
             if (field[a] === 1) {
+                flag = false;
                 // lighting win units of User
                 for (let i = 0; i < winVars.length; i++) {
                     let winVar = winVars[i];
@@ -109,6 +109,7 @@ function calculateWinner(field, winCombinatoins) {
 
             // AI win matching
             if (field[a] === 0) {
+                flag = false;
                 // lighting win units of Ai
                 for (let i = 0; i < winVars.length; i++) {
                     let winVar = winVars[i];
@@ -166,6 +167,8 @@ function playAgain() {
     field.length = 0;
     // clear the counter
     counter = 0;
+    // clear the flag of enable click if someone win
+    flag = true;
     // hide win and loose pages
     windowLose.classList.remove("game__page_active");
     windowWin.classList.remove("game__page_active");
