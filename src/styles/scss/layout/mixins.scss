@@ -1,0 +1,66 @@
+@mixin desktop() {
+  @media screen and (max-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin laptop() {
+  @media screen and (max-width: $laptop) {
+    @content;
+  }
+}
+
+@mixin tablet() {
+  @media screen and (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin addition() {
+  @media screen and (max-width: $addition) {
+    @content;
+  }
+}
+
+@mixin smartphone() {
+  @media screen and (max-width: $smartphone) {
+    @content;
+  }
+}
+
+@mixin smartphoneAdd() {
+  @media screen and (max-width: $smartphoneAdd) {
+    @content;
+  }
+}
+
+
+@mixin phone() {
+  @media screen and (max-width: $phone) {
+    @content;
+  }
+}
+
+@mixin tabletGrz() {
+  @media screen and (max-height: $tablet) {
+    @content;
+  }
+}
+
+@mixin smartphoneGrz() {
+  @media screen and (max-height: $smartphone) {
+    @content;
+  }
+}
+
+@mixin smartphoneAddGrz() {
+  @media screen and (max-height: $smartphoneAdd) {
+    @content;
+  }
+}
+
+@mixin phoneGrz() {
+  @media screen and (max-height: $phone) {
+    @content;
+  }
+}

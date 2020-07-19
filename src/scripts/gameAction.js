@@ -53,6 +53,13 @@ for (let i = 0; i < units.length; i++) {
         };
 
         units = document.querySelectorAll('.game__unit');
+        // additional class for adaptive markup
+        if (counter >= 16) {
+            for (let j = 0; j < units.length; j++) {
+                let addClassForMarkUp = units[j];
+                addClassForMarkUp.classList.add('game__unit_large');
+            };
+        }
         for (let j = 0; j < units.length; j++) {
             let newUnitUser = units[j];
             if (counter < 16) return;
@@ -132,33 +139,34 @@ for (let i = 0; i < againBtns.length; i++) {
 
 function playAgain() {
     // remove all X & 0 
-    units = document.querySelectorAll('.game__unit');
+    units = document.querySelectorAll(".game__unit");
     for (let j = 0; j < units.length; j++) {
         let deleteUnit = units[j];
         deleteUnit.classList.remove("game__zero");
         deleteUnit.classList.remove("game__cross");
+        deleteUnit.classList.remove("game__unit_large");
     };
     // remove all additional units of 8X8
-    let addUnits = document.querySelectorAll('.game__unit_add');
+    let addUnits = document.querySelectorAll(".game__unit_add");
     for (let i = 0; i < addUnits.length; i++) {
         let addUnit = addUnits[i];
         addUnit.remove();
-        gameField.classList.remove('game__field_large');
+        gameField.classList.remove("game__field_large");
     };
     // remove confetti of winner
-    let confetti = document.querySelectorAll('.game__confetti');
+    let confetti = document.querySelectorAll(".game__confetti");
     for (let i = 0; i < confetti.length; i++) {
         let candy = confetti[i];
         candy.remove();
     };
     // remove units User winner lighting
-    let unitsWinUser = document.querySelectorAll('.game__unit_win_User');
+    let unitsWinUser = document.querySelectorAll(".game__unit_win_User");
     for (let i = 0; i < unitsWinUser.length; i++) {
         let unitWin = unitsWinUser[i];
         unitWin.classList.remove("game__unit_win_User");
     };
     // remove units AI winner lighting
-    let unitsWinAI = document.querySelectorAll('.game__unit_win_AI');
+    let unitsWinAI = document.querySelectorAll(".game__unit_win_AI");
     for (let i = 0; i < unitsWinAI.length; i++) {
         let unitWin = unitsWinAI[i];
         unitWin.classList.remove("game__unit_win_AI");

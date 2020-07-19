@@ -25,6 +25,9 @@
     font-size: 64px;
     line-height: 64px;
     margin-bottom: 50px;
+    @include smartphoneAdd {
+        font-size: 42px;
+    }
 }
 
 .game__page_button {

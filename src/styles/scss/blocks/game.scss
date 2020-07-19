@@ -13,11 +13,105 @@
     flex-wrap: wrap;
     width: 500px;
     height: 500px;
+
+    @include laptop {
+        @include smartphoneGrz {
+            width: 400px;
+            height: 400px;
+        }
+        @include smartphoneAddGrz {
+            width: 320px;
+            height: 320px;
+        }
+    }
+
+    @include tablet {
+        @include smartphoneGrz {
+            width: 400px;
+            height: 400px;
+        }
+        @include smartphoneAddGrz {
+            width: 320px;
+            height: 320px;
+        }
+    }
+
+    @include addition {
+        width: 450px;
+        height: 450px;
+    }
+
+    @include smartphone {
+        width: 390px;
+        height: 390px;
+    }
+
+    @include smartphoneAdd {
+        width: 320px;
+        height: 320px;
+    }
+
+    @include phone {
+        width: 315px;
+        height: 315px;
+    }
 }
 
 .game__field_large {
     width: 800px;
     height: 800px;
+
+    @include desktop {
+        @include tabletGrz {
+            width: 760px;
+            height: 760px;
+        }
+    }
+
+    @include laptop {
+        width: 760px;
+        height: 760px;
+
+        @include smartphoneGrz {
+            width: 400px;
+            height: 400px;
+        }
+
+        @include smartphoneAddGrz {
+            width: 320px;
+            height: 320px;
+        }
+    }
+
+    @include tablet {
+        width: 504px;
+        height: 504px;
+
+        @include smartphoneGrz {
+            width: 400px;
+            height: 400px;
+        }
+
+        @include smartphoneAddGrz {
+            width: 320px;
+            height: 320px;
+        }
+    }
+
+    @include addition {
+        width: 480px;
+        height: 480px;
+    }
+
+    @include smartphone {
+        width: 400px;
+        height: 400px;
+    }
+
+    @include smartphoneAdd {
+        width: 312px;
+        height: 312px;
+    }
 }
 
 .game__unit {
@@ -30,27 +124,126 @@
     border: 1px solid $mainWhite;
     cursor: pointer;
     transition: .3s;
-    
+
     &:hover {
         background-color: $unitHover;
+    }
+
+    @include laptop {
+        @include smartphoneGrz {
+            width: 80px;
+            height: 80px;
+        }
+
+        @include smartphoneAddGrz {
+            width: 64px;
+            height: 64px;
+        }
+    }
+
+    @include tablet {
+        @include smartphoneGrz {
+            width: 80px;
+            height: 80px;
+        }
+        @include smartphoneAddGrz {
+            width: 64px;
+            height: 64px;
+        }
+    }
+
+    @include addition {
+        width: 90px;
+        height: 90px;
+    }
+
+    @include smartphone {
+        width: 78px;
+        height: 78px;
+    }
+
+    @include smartphoneAdd {
+        width: 64px;
+        height: 64px;
+    }
+
+    @include phone {
+        width: 63px;
+        height: 63px;
+    }
+}
+
+.game__unit_large {
+    @include desktop {
+        @include tabletGrz {
+            width: 94px;
+            height: 95px;
+        }
+    }
+
+    @include laptop {
+        width: 94px;
+        height: 95px;
+
+        @include smartphoneGrz {
+            width: 50px;
+            height: 50px;
+        }
+
+        @include smartphoneAddGrz {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    @include tablet {
+        width: 63px;
+        height: 63px;
+
+        @include smartphoneGrz {
+            width: 50px;
+            height: 50px;
+        }
+
+        @include smartphoneAddGrz {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    @include addition {
+        width: 60px;
+        height: 60px;
+    }
+
+    @include smartphone {
+        width: 50px;
+        height: 50px;
+    }
+
+    @include smartphoneAdd {
+        width: 39px;
+        height: 39px;
     }
 }
 
 // lighting the winner units of User
 .game__unit_win_User {
     &:hover {
-        background-color: green;
+        background-color: $unitsColorUserWin;
     }
-    background-color: green;
-  }
-  
-  // lighting the winner units of AI
-  .game__unit_win_AI {
+
+    background-color: $unitsColorUserWin;
+}
+
+// lighting the winner units of AI
+.game__unit_win_AI {
     &:hover {
-        background-color: red;
+        background-color: $unitsColorAIWin;
     }
-    background-color: red;
-  }
+
+    background-color: $unitsColorAIWin;
+}
 
 .game__zero {
     &:before {
@@ -62,6 +255,119 @@
         border: 17px solid $zeroBackground;
         background-color: transparent;
         position: relative;
+
+        @include laptop {
+            @include smartphoneAddGrz {
+                width: 22px;
+                height: 22px;
+                border: 12px solid $zeroBackground;
+            }
+        }
+
+        @include smartphone {
+            width: 25px;
+            height: 25px;
+            border: 15px solid $zeroBackground;
+        }
+
+        @include smartphoneAdd {
+            width: 22px;
+            height: 22px;
+            border: 12px solid $zeroBackground;
+        }
+    }
+}
+
+// small size of the field 8x8
+[class~="game__field_large"] .game__zero {
+    @include laptop {
+        @include smartphoneGrz {
+            &:before {
+                content: "";
+                display: block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 10px solid $zeroBackground;
+                background-color: transparent;
+                position: relative;
+            }
+        }
+
+        @include smartphoneAddGrz {
+            &:before {
+                content: "";
+                display: block;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                border: 8px solid $zeroBackground;
+                background-color: transparent;
+                position: relative;
+            }
+        }
+    }
+    @include tablet {
+        &:before {
+            content: "";
+            display: block;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 12px solid $zeroBackground;
+            background-color: transparent;
+            position: relative;
+        }
+        @include smartphoneGrz {
+            &:before {
+                content: "";
+                display: block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 10px solid $zeroBackground;
+                background-color: transparent;
+                position: relative;
+            }
+        }
+        @include smartphoneAddGrz {
+            &:before {
+                content: "";
+                display: block;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                border: 8px solid $zeroBackground;
+                background-color: transparent;
+                position: relative;
+            }
+        }
+    }
+
+    @include smartphone {
+        &:before {
+            content: "";
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 10px solid $zeroBackground;
+            background-color: transparent;
+            position: relative;
+        }
+    }
+
+    @include smartphoneAdd {
+        &:before {
+            content: "";
+            display: block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 8px solid $zeroBackground;
+            background-color: transparent;
+            position: relative;
+        }
     }
 }
 
@@ -76,6 +382,44 @@
         height: 70px;
         border-radius: 5px;
         background-color: $mainWhite;
+
+        @include laptop {
+            @include smartphoneGrz {
+                left: 29px;
+            }
+
+            @include smartphoneAddGrz {
+                left: 24px;
+                width: 12px;
+                height: 50px;
+            }
+        }
+
+        @include tablet {
+            @include smartphoneGrz {
+                left: 29px;
+            }
+            
+            @include smartphoneAddGrz {
+                left: 25px;
+            }
+        }
+
+        @include addition {
+            left: 35px;
+        }
+
+        @include smartphone {
+            left: 30px;
+            width: 15px;
+            height: 60px;
+        }
+
+        @include smartphoneAdd {
+            left: 24px;
+            width: 12px;
+            height: 50px;
+        }
     }
 
     &:before {
@@ -84,5 +428,114 @@
 
     &:after {
         transform: rotate(45deg);
+    }
+}
+
+// small size of the field 8x8
+[class~="game__field_large"] .game__cross {
+    @include desktop {
+        @include tabletGrz {
+            &:before,
+            &:after {
+                left: 36px;
+            }
+        }
+    }
+    @include laptop {
+        @include smartphoneGrz {
+            &:before,
+            &:after {
+                position: absolute;
+                left: 19px;
+                content: "";
+                display: block;
+                width: 12px;
+                height: 50px;
+                border-radius: 5px;
+                background-color: $mainWhite;
+            }
+        }
+
+        @include smartphoneAddGrz {
+            &:before,
+            &:after {
+                position: absolute;
+                left: 14px;
+                content: "";
+                display: block;
+                width: 10px;
+                height: 38px;
+                border-radius: 3px;
+                background-color: $mainWhite;
+            }
+        }
+    }
+
+    @include tablet {
+        &:before,
+        &:after {
+            position: absolute;
+            left: 23px;
+            content: "";
+            display: block;
+            width: 14px;
+            height: 55px;
+            border-radius: 5px;
+            background-color: $mainWhite;
+        }
+        @include smartphoneGrz {
+            &:before,
+            &:after {
+                position: absolute;
+                left: 19px;
+                content: "";
+                display: block;
+                width: 12px;
+                height: 50px;
+                border-radius: 5px;
+                background-color: $mainWhite;
+            }
+        }
+        @include smartphoneAddGrz {
+            &:before,
+            &:after {
+                position: absolute;
+                left: 14px;
+                content: "";
+                display: block;
+                width: 10px;
+                height: 38px;
+                border-radius: 3px;
+                background-color: $mainWhite;
+            }
+        }
+    }
+
+    @include smartphone {
+        &:before,
+        &:after {
+            position: absolute;
+            left: 19px;
+            content: "";
+            display: block;
+            width: 12px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: $mainWhite;
+        }
+    }
+
+    @include smartphoneAdd {
+        &:before,
+        &:after {
+            position: absolute;
+            left: 14px;
+            content: "";
+            display: block;
+            width: 10px;
+            height: 38px;
+            border-radius: 3px;
+            background-color: $mainWhite;
+        }
     }
 }
