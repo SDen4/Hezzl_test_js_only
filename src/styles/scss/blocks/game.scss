@@ -19,6 +19,7 @@
             width: 400px;
             height: 400px;
         }
+
         @include smartphoneAddGrz {
             width: 320px;
             height: 320px;
@@ -30,6 +31,7 @@
             width: 400px;
             height: 400px;
         }
+
         @include smartphoneAddGrz {
             width: 320px;
             height: 320px;
@@ -63,8 +65,8 @@
 
     @include desktop {
         @include tabletGrz {
-            width: 760px;
-            height: 760px;
+            width: 755px;
+            height: 755px;
         }
     }
 
@@ -146,6 +148,7 @@
             width: 80px;
             height: 80px;
         }
+
         @include smartphoneAddGrz {
             width: 64px;
             height: 64px;
@@ -177,7 +180,7 @@
     @include desktop {
         @include tabletGrz {
             width: 94px;
-            height: 95px;
+            height: 94px;
         }
     }
 
@@ -243,299 +246,4 @@
     }
 
     background-color: $unitsColorAIWin;
-}
-
-.game__zero {
-    &:before {
-        content: "";
-        display: block;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        border: 17px solid $zeroBackground;
-        background-color: transparent;
-        position: relative;
-
-        @include laptop {
-            @include smartphoneAddGrz {
-                width: 22px;
-                height: 22px;
-                border: 12px solid $zeroBackground;
-            }
-        }
-
-        @include smartphone {
-            width: 25px;
-            height: 25px;
-            border: 15px solid $zeroBackground;
-        }
-
-        @include smartphoneAdd {
-            width: 22px;
-            height: 22px;
-            border: 12px solid $zeroBackground;
-        }
-    }
-}
-
-// small size of the field 8x8
-[class~="game__field_large"] .game__zero {
-    @include laptop {
-        @include smartphoneGrz {
-            &:before {
-                content: "";
-                display: block;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                border: 10px solid $zeroBackground;
-                background-color: transparent;
-                position: relative;
-            }
-        }
-
-        @include smartphoneAddGrz {
-            &:before {
-                content: "";
-                display: block;
-                width: 16px;
-                height: 16px;
-                border-radius: 50%;
-                border: 8px solid $zeroBackground;
-                background-color: transparent;
-                position: relative;
-            }
-        }
-    }
-    @include tablet {
-        &:before {
-            content: "";
-            display: block;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            border: 12px solid $zeroBackground;
-            background-color: transparent;
-            position: relative;
-        }
-        @include smartphoneGrz {
-            &:before {
-                content: "";
-                display: block;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                border: 10px solid $zeroBackground;
-                background-color: transparent;
-                position: relative;
-            }
-        }
-        @include smartphoneAddGrz {
-            &:before {
-                content: "";
-                display: block;
-                width: 16px;
-                height: 16px;
-                border-radius: 50%;
-                border: 8px solid $zeroBackground;
-                background-color: transparent;
-                position: relative;
-            }
-        }
-    }
-
-    @include smartphone {
-        &:before {
-            content: "";
-            display: block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 10px solid $zeroBackground;
-            background-color: transparent;
-            position: relative;
-        }
-    }
-
-    @include smartphoneAdd {
-        &:before {
-            content: "";
-            display: block;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            border: 8px solid $zeroBackground;
-            background-color: transparent;
-            position: relative;
-        }
-    }
-}
-
-.game__cross {
-    &:before,
-    &:after {
-        position: absolute;
-        left: 39px;
-        content: "";
-        display: block;
-        width: 20px;
-        height: 70px;
-        border-radius: 5px;
-        background-color: $mainWhite;
-
-        @include laptop {
-            @include smartphoneGrz {
-                left: 29px;
-            }
-
-            @include smartphoneAddGrz {
-                left: 24px;
-                width: 12px;
-                height: 50px;
-            }
-        }
-
-        @include tablet {
-            @include smartphoneGrz {
-                left: 29px;
-            }
-            
-            @include smartphoneAddGrz {
-                left: 25px;
-            }
-        }
-
-        @include addition {
-            left: 35px;
-        }
-
-        @include smartphone {
-            left: 30px;
-            width: 15px;
-            height: 60px;
-        }
-
-        @include smartphoneAdd {
-            left: 24px;
-            width: 12px;
-            height: 50px;
-        }
-    }
-
-    &:before {
-        transform: rotate(-45deg);
-    }
-
-    &:after {
-        transform: rotate(45deg);
-    }
-}
-
-// small size of the field 8x8
-[class~="game__field_large"] .game__cross {
-    @include desktop {
-        @include tabletGrz {
-            &:before,
-            &:after {
-                left: 36px;
-            }
-        }
-    }
-    @include laptop {
-        @include smartphoneGrz {
-            &:before,
-            &:after {
-                position: absolute;
-                left: 19px;
-                content: "";
-                display: block;
-                width: 12px;
-                height: 50px;
-                border-radius: 5px;
-                background-color: $mainWhite;
-            }
-        }
-
-        @include smartphoneAddGrz {
-            &:before,
-            &:after {
-                position: absolute;
-                left: 14px;
-                content: "";
-                display: block;
-                width: 10px;
-                height: 38px;
-                border-radius: 3px;
-                background-color: $mainWhite;
-            }
-        }
-    }
-
-    @include tablet {
-        &:before,
-        &:after {
-            position: absolute;
-            left: 23px;
-            content: "";
-            display: block;
-            width: 14px;
-            height: 55px;
-            border-radius: 5px;
-            background-color: $mainWhite;
-        }
-        @include smartphoneGrz {
-            &:before,
-            &:after {
-                position: absolute;
-                left: 19px;
-                content: "";
-                display: block;
-                width: 12px;
-                height: 50px;
-                border-radius: 5px;
-                background-color: $mainWhite;
-            }
-        }
-        @include smartphoneAddGrz {
-            &:before,
-            &:after {
-                position: absolute;
-                left: 14px;
-                content: "";
-                display: block;
-                width: 10px;
-                height: 38px;
-                border-radius: 3px;
-                background-color: $mainWhite;
-            }
-        }
-    }
-
-    @include smartphone {
-        &:before,
-        &:after {
-            position: absolute;
-            left: 19px;
-            content: "";
-            display: block;
-            width: 12px;
-            height: 50px;
-            border-radius: 5px;
-            background-color: $mainWhite;
-        }
-    }
-
-    @include smartphoneAdd {
-        &:before,
-        &:after {
-            position: absolute;
-            left: 14px;
-            content: "";
-            display: block;
-            width: 10px;
-            height: 38px;
-            border-radius: 3px;
-            background-color: $mainWhite;
-        }
-    }
 }
