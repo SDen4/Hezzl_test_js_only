@@ -8,7 +8,8 @@
         border: 17px solid $zeroBackground;
         background-color: transparent;
         position: relative;
-
+        animation: zero .5s ease;
+        
         @include laptop {
             @include smartphoneAddGrz {
                 width: 22px;
@@ -31,6 +32,21 @@
     }
 }
 
+@keyframes zero {
+    0% {
+      width: 26px;
+      height: 26px;
+    }
+    50% {
+      width: 46px;
+      height: 46px;
+    }
+    100% {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
 // small size of the field 8x8 for mobile markup
 [class~="game__field_large"] .game__zero {
     @include laptop {
@@ -50,6 +66,7 @@
             }
         }
     }
+
     @include tablet {
         &:before {
             width: 22px;
@@ -57,6 +74,7 @@
             border-radius: 50%;
             border: 12px solid $zeroBackground;
         }
+
         @include smartphoneGrz {
             &:before {
                 width: 20px;
@@ -65,6 +83,7 @@
                 border: 10px solid $zeroBackground;
             }
         }
+
         @include smartphoneAddGrz {
             &:before {
                 width: 16px;
@@ -95,6 +114,7 @@
 }
 
 .game__cross {
+
     &:before,
     &:after {
         position: absolute;
@@ -122,7 +142,7 @@
             @include smartphoneGrz {
                 left: 29px;
             }
-            
+
             @include smartphoneAddGrz {
                 left: 25px;
             }
@@ -147,16 +167,29 @@
 
     &:before {
         transform: rotate(-45deg);
+        animation: cross .1s ease;
     }
 
     &:after {
         transform: rotate(45deg);
+        animation: cross .5s ease;
+    }
+}
+
+@keyframes cross {
+    0% {
+        height: 0px;
+    }
+
+    100% {
+        height: 70px;
     }
 }
 
 // small size of the field 8x8 for mobile markup
 [class~="game__field_large"] .game__cross {
-    @include laptop  {
+    @include laptop {
+
         &:before,
         &:after {
             left: 36px;
@@ -165,14 +198,17 @@
 
     @include desktop {
         @include tabletGrz {
+
             &:before,
             &:after {
                 left: 36px;
             }
         }
     }
+
     @include laptop {
         @include smartphoneGrz {
+
             &:before,
             &:after {
                 left: 18px;
@@ -183,6 +219,7 @@
         }
 
         @include smartphoneAddGrz {
+
             &:before,
             &:after {
                 left: 14px;
@@ -194,6 +231,7 @@
     }
 
     @include tablet {
+
         &:before,
         &:after {
             left: 23px;
@@ -201,7 +239,9 @@
             height: 55px;
             border-radius: 5px;
         }
+
         @include smartphoneGrz {
+
             &:before,
             &:after {
                 left: 18px;
@@ -209,7 +249,9 @@
                 height: 50px;
             }
         }
+
         @include smartphoneAddGrz {
+
             &:before,
             &:after {
                 left: 14px;
@@ -221,6 +263,7 @@
     }
 
     @include smartphone {
+
         &:before,
         &:after {
             left: 18px;
@@ -231,6 +274,7 @@
     }
 
     @include smartphoneAdd {
+
         &:before,
         &:after {
             left: 14px;

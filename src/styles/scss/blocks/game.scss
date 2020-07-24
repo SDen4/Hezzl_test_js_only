@@ -237,6 +237,7 @@
     }
 
     background-color: $unitsColorUserWin;
+    animation: winRow .2s ease infinite;
 }
 
 // lighting the winner units of AI
@@ -246,4 +247,33 @@
     }
 
     background-color: $unitsColorAIWin;
+    animation: looseRow .2s ease infinite;
+}
+
+@keyframes winRow {
+    0% {
+        background-color: $unitsColorUserWin;
+    }
+
+    50% {
+        background-color: $unitsColorUserWinBlink;
+    }
+
+    100% {
+        background-color: $unitsColorUserWin;
+    }
+}
+
+@keyframes looseRow {
+    0% {
+        background-color: $unitsColorAIWin;
+    }
+
+    50% {
+        background-color: $unitsColorAIWinBlink;
+    }
+
+    100% {
+        background-color: $unitsColorAIWin;
+    }
 }
