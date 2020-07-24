@@ -9,7 +9,7 @@
         background-color: transparent;
         position: relative;
         animation: zero .5s ease;
-        
+
         @include laptop {
             @include smartphoneAddGrz {
                 width: 22px;
@@ -33,19 +33,12 @@
 }
 
 @keyframes zero {
-    0% {
-      width: 26px;
-      height: 26px;
-    }
-    50% {
-      width: 46px;
-      height: 46px;
-    }
-    100% {
-      width: 36px;
-      height: 36px;
-    }
-  }
+    0% {transform: scale(.1, .1)}
+    20% {transform: scale(.4, .4)}
+    40% {transform: scale(.8, .8)}
+    60% {transform: scale(1.3, 1.3)}
+    100% {transform: scale(1, 1)}
+}
 
 // small size of the field 8x8 for mobile markup
 [class~="game__field_large"] .game__zero {
@@ -172,18 +165,13 @@
 
     &:after {
         transform: rotate(45deg);
-        animation: cross .5s ease;
+        animation: cross .3s ease;
     }
 }
 
 @keyframes cross {
-    0% {
-        height: 0px;
-    }
-
-    100% {
-        height: 70px;
-    }
+    0% {height: 0%}
+    100% {height: 74%}
 }
 
 // small size of the field 8x8 for mobile markup
