@@ -20,7 +20,7 @@ for (let i = 0; i < units.length; i++) {
         field[i] = '1';
         unitUser.classList.add('game__cross');
 
-        if (counter >= 8) {calculateWinner(field, arrWin5x5)};
+        if (counter >= 8) { calculateWinner(field, arrWin5x5) };
 
         // random number from 0 to units.length-1 for AI logic
         let maxNum = units.length;
@@ -35,7 +35,7 @@ for (let i = 0; i < units.length; i++) {
         units[compNum].classList.add('game__zero');
         flag = true;
 
-        if (counter >= 8) {calculateWinner(field, arrWin5x5)};
+        if (counter >= 8) { calculateWinner(field, arrWin5x5) };
         counter += 2; // counter of moves, 2 moves: User & AI
 
         if (counter === 16) {
@@ -135,9 +135,18 @@ function calculateWinner(field, winCombinatoins) {
 // button Play again
 for (let i = 0; i < againBtns.length; i++) {
     let againBtn = againBtns[i];
+    // by mouse click:
     againBtn.addEventListener('click', playAgain);
+
+    // by push the buttons: Enter, Space, Escape:
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Enter' || e.code === 'Space' || e.code === 'Escape') {
+            playAgain();
+        };
+    });
 };
 
+// reset all settings for new game
 function playAgain() {
     // remove all X & 0 
     units = document.querySelectorAll(".game__unit");
