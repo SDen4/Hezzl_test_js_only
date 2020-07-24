@@ -2,11 +2,11 @@ import createAddElements from './gameCreateAddElem';
 import createConfetti from './gameConfetti';
 import { arrWin8x8, arrWin5x5 } from './gameWinComb';
 
-let units = document.querySelectorAll('.game__unit');
 const gameField = document.querySelector('.game__field');
 const windowWin = document.querySelector(".game__page_win");
 const windowLose = document.querySelector(".game__page_loose");
 const againBtns = document.querySelectorAll(".game__page_button");
+let units = document.querySelectorAll('.game__unit');
 let field = []; // array of all moves
 let counter = 0; // counter of moves for calculating 60%
 let flag = true; // flag to enable click if someone win
@@ -16,43 +16,43 @@ for (let i = 0; i < units.length; i++) {
     let unitUser = units[i];
     unitUser.addEventListener('click', () => {
         // User's move
-        if (field[i] === 1 || field[i] === 0 || counter >= 16 || flag === false) return;
-        field[i] = 1;
+        if (field[i] === '1' || field[i] === '0' || counter >= 16 || flag === false) return;
+        field[i] = '1';
         unitUser.classList.add('game__cross');
 
-        calculateWinner(field, arrWin5x5);
+        if (counter >= 8) {calculateWinner(field, arrWin5x5)};
 
         // random number from 0 to units.length-1 for AI logic
         let maxNum = units.length;
         let compNum = Math.floor(Math.random() * (maxNum));
 
         // AI's move
-        while (field[compNum] === 1 || field[compNum] === 0) {
+        while (field[compNum] === '1' || field[compNum] === '0') {
+            flag = false;
             compNum = Math.floor(Math.random() * (maxNum));
         }
-        let unitComp = units[compNum];
-        field[compNum] = 0;
-        unitComp.classList.add('game__zero');
+        field[compNum] = '0';
+        units[compNum].classList.add('game__zero');
+        flag = true;
 
-        calculateWinner(field, arrWin5x5);
+        if (counter >= 8) {calculateWinner(field, arrWin5x5)};
         counter += 2; // counter of moves, 2 moves: User & AI
 
         if (counter === 16) {
-            for (let j = 0; j < field.length; j++) {
-                if (field[j] == undefined) {
-                    field[j] = '';
-                }
-            }
-            // modify array of moves for new field's size: 8x8
-            for (let i = 0; i < 5; i++) {
-                field.splice(5 + 8 * i, 0, '', '', '');
-            };
             // modify markup of the field
             gameField.classList.add('game__field_large');
             createAddElements();
         };
 
         units = document.querySelectorAll('.game__unit');
+
+        // modify array of moves for new field's size: 8x8
+        if (counter === 16) {
+            for (let i = 0; i < 5; i++) {
+                field.splice(5 + 8 * i, 0, '', '', '');
+            };
+        }
+
         // additional class for adaptive markup
         if (counter >= 16) {
             for (let j = 0; j < units.length; j++) {
@@ -65,8 +65,8 @@ for (let i = 0; i < units.length; i++) {
             if (counter < 16) return;
             newUnitUser.addEventListener('click', () => {
                 // User's move
-                if (field[j] === 1 || field[j] === 0 || counter < 16 || flag === false) return;
-                field[j] = 1;
+                if (field[j] === '1' || field[j] === '0' || counter < 16 || flag === false) return;
+                field[j] = '1';
                 newUnitUser.classList.add('game__cross');
 
                 calculateWinner(field, arrWin8x8);
@@ -76,19 +76,20 @@ for (let i = 0; i < units.length; i++) {
                 let newCompNum = Math.floor(Math.random() * (newMaxNum));
 
                 // AI's move
-                while (field[newCompNum] === 1 || field[newCompNum] === 0) {
+                while (field[newCompNum] === '1' || field[newCompNum] === '0') {
+                    flag = false;
                     newCompNum = Math.floor(Math.random() * (newMaxNum));
                 }
-                let newUnitComp = units[newCompNum];
-                field[newCompNum] = 0;
-                newUnitComp.classList.add('game__zero');
+                field[newCompNum] = '0';
+                units[newCompNum].classList.add('game__zero');
+                flag = true;
 
                 calculateWinner(field, arrWin8x8);
                 counter += 2; // counter of moves, 2 moves: User & AI
             });
         };
     });
-};
+}
 
 // calculating win combinations
 function calculateWinner(field, winCombinatoins) {
@@ -97,10 +98,10 @@ function calculateWinner(field, winCombinatoins) {
         let [a, b, c, d, e] = winCombinatoins[j];
         let winVars = [a, b, c, d, e];
         let winDuration = 2500; // duration of showing the win result in ms
-        if (field[a] != undefined && field[a] === field[b] && field[b] === field[c] && field[c] === field[d] && field[d] === field[e]) {
+        if (field[a] !== undefined && field[a] === field[b] && field[b] === field[c] && field[c] === field[d] && field[d] === field[e]) {
 
             // User win matching
-            if (field[a] === 1) {
+            if (field[a] === '1') {
                 flag = false;
                 // lighting win units of User
                 for (let i = 0; i < winVars.length; i++) {
@@ -115,7 +116,7 @@ function calculateWinner(field, winCombinatoins) {
             };
 
             // AI win matching
-            if (field[a] === 0) {
+            if (field[a] === '0') {
                 flag = false;
                 // lighting win units of Ai
                 for (let i = 0; i < winVars.length; i++) {
