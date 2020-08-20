@@ -10,6 +10,7 @@ let units = document.querySelectorAll('.game__unit');
 let field = []; // array of all moves
 let counter = 0; // counter of moves for calculating 60%
 let flag = true; // flag to enable click if someone win
+let stop = false;
 
 
 for (let i = 0; i < units.length; i++) {
@@ -20,7 +21,12 @@ for (let i = 0; i < units.length; i++) {
         field[i] = '1';
         unitUser.classList.add('game__cross');
 
-        if (counter >= 8) { calculateWinner(field, arrWin5x5) };
+        if (counter >= 8) { 
+            stop = calculateWinner(field, arrWin5x5);// stop mooving AI after USER's win
+            calculateWinner(field, arrWin5x5);
+        };
+
+        if(stop) return;// stop mooving AI after USER's win
 
         // random number from 0 to units.length-1 for AI logic
         let maxNum = units.length;
@@ -30,7 +36,7 @@ for (let i = 0; i < units.length; i++) {
         while (field[compNum] === '1' || field[compNum] === '0') {
             flag = false;
             compNum = Math.floor(Math.random() * (maxNum));
-        }
+        };
         field[compNum] = '0';
         units[compNum].classList.add('game__zero');
         flag = true;
@@ -69,7 +75,9 @@ for (let i = 0; i < units.length; i++) {
                 field[j] = '1';
                 newUnitUser.classList.add('game__cross');
 
+                stop = calculateWinner(field, arrWin8x8);// stop mooving AI after USER's win
                 calculateWinner(field, arrWin8x8);
+                if(stop) return;// stop mooving AI after USER's win
 
                 // random number from 0 to units.length-1
                 let newMaxNum = units.length;
@@ -113,6 +121,7 @@ function calculateWinner(field, winCombinatoins) {
                     windowWin.classList.add("game__page_active");
                     createConfetti();
                 }, winDuration);
+                return true;
             };
 
             // AI win matching
@@ -181,6 +190,8 @@ function playAgain() {
         let unitWin = unitsWinAI[i];
         unitWin.classList.remove("game__unit_win_AI");
     };
+    // clear the STOP flag
+    stop = false;
     // clear the field array
     field.length = 0;
     // clear the counter
