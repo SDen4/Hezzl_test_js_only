@@ -40,6 +40,5 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "vue": "^2.6.11"
   }
 }
